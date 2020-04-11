@@ -23,3 +23,9 @@ request.on("error", error => {
 });
 
 request
+
+
+const users = ["chalkers", "alenaholligan"];
+users.forEach(name => {
+    console.log(name);
+});
