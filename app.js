@@ -29,3 +29,6 @@ const users = ["chalkers", "alenaholligan"];
 users.forEach(name => {
     console.log(name);
 });
+
+console.log(process.argv.slice(2));
+
