@@ -1,25 +1,11 @@
 console.log("Hi Node");
+const weather = require("./weather");
 
-const https = require("https");
-const request = https.get("https://teamtreehouse.com/chalkers.json", response => {
-    let body  = "";
 
-    response.on("data", dataChunk => {
-        body += dataChunk;
-        console.log(dataChunk);
-    });
 
-    response.on("end", () => {
-        const profile = JSON.parse(body);
+console.log("Hi s");
+var result = weather.get("test")
 
-        console.log(profile.points.JavaScript);
-        // console.dir(profile);
-    });
+console.log("This is result" + result)
+//console.log(process.argv.slice(2));
 
-});
-
-request.on("error", error => {
-    console.error(error.message);
-});
-
-request
