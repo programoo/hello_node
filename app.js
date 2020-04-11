@@ -1,29 +1,28 @@
 console.log("Hi Node");
 
 const https = require("https");
-const request = https.get("https://teamtreehouse.com/chalkers.json", response => {
-    let body  = "";
+var request = null;
 
-    response.on("data", dataChunk => {
-        body += dataChunk;
-        console.log(dataChunk);
+try {
+    request = https.get("https://teametreehouse.com/chalkers.json", response => {
+        let body = "";
+        response.on("data", dataChunk => {
+            body += dataChunk;
+        });
+
+        response.on("end", () => {
+            const profile = JSON.parse(body);
+            console.log(profile.points.JavaScript);
+        });
+    }).on("error", error => {
+        console.error("RequestError: " + error.message);
     });
 
-    response.on("end", () => {
-        const profile = JSON.parse(body);
-
-        console.log(profile.points.JavaScript);
-        // console.dir(profile);
-    });
-
-});
-
-request.on("error", error => {
-    console.error(error.message);
-});
+} catch (error) {
+    console.error("TryCatch: " + error);
+}
 
 request
-
 
 const users = ["chalkers", "alenaholligan"];
 users.forEach(name => {
