@@ -4,15 +4,21 @@ const https = require("https");
 var request = null;
 
 try {
-    request = https.get("https://teametreehouse.com/chalkers.json", response => {
+    request = https.get("https://teamtreehouse.com/chalkers-not.json", response => {
         let body = "";
         response.on("data", dataChunk => {
             body += dataChunk;
         });
 
         response.on("end", () => {
-            const profile = JSON.parse(body);
-            console.log(profile.points.JavaScript);
+
+            try{
+                const profile = JSON.parse(body);
+                console.log(profile.points.JavaScript);
+            }
+            catch(error){
+                console.error("Parse Error" + error.message);
+            }
         });
     }).on("error", error => {
         console.error("RequestError: " + error.message);
@@ -25,6 +31,7 @@ try {
 request
 
 const users = ["chalkers", "alenaholligan"];
+
 users.forEach(name => {
     console.log(name);
 });
